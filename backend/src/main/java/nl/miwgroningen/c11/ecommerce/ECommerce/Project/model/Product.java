@@ -4,6 +4,7 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,16 +28,16 @@ public class Product {
     @Column(nullable = false)
     private Double price;
 
-    private Integer currentQuantity;
-    private Integer soldQuantity;
+    private Integer currentQuantity = 10;
+    private Integer soldQuantity = 0;
 
     @Lob
-    private String description;
+    private String description = "";
 
     @OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
-    private List<ProductImage> productImages;
+    private List<ProductImage> productImages = new ArrayList<>();
 
-    public void addImage(ProductImage image){
+    public void addImage(ProductImage image) {
         productImages.add(image);
     }
 

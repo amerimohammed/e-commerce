@@ -18,7 +18,7 @@ public abstract class Image {
     @Column(nullable = false, length = 100)
     private String imageName;
 
-    public String getImageUrl () {
+    public String getImageUrl() {
         return "/images/" + imageName;
     }
 }
