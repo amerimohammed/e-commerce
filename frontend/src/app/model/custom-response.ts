@@ -1,9 +1,19 @@
-export interface CustomResponse<T> {
+import { Product } from './product';
+
+export type CustomResponse<T> = {
   timestamp: Date;
   statusCode: number;
   status: string;
   reason?: string;
   message?: string;
   developerMessage?: string;
-  data: { [key: string]: T };
-}
+  data: { [k in keyof T]: T[k] };
+};
+
+export type ProductType = {
+  product: Product;
+};
+
+export type ProductsType = {
+  products: Product[];
+};

@@ -1,0 +1,48 @@
+<mat-toolbar>
+  <div class="d-flex justify-content-between align-items-center container">
+    <a routerLink="home">E-Commerce</a>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon
+        [matBadge]="getTotalQuantity()"
+        [matBadgeHidden]="!getTotalQuantity()"
+        matBadgeColor="warn"
+        >shopping_cart</mat-icon
+      >
+    </button>
+    <mat-menu #menu="matMenu">
+      <div class="p-3">
+        <hr />
+        <div class="pb-3 d-flex justify-content-between">
+          <span class="me-3">{{ cart.items.length }} items</span>
+          <a routerLink="cart">View Cart</a>
+        </div>
+        <div *ngIf="cart.items.length">
+          <div
+            *ngFor="let item of cart.items"
+            class="d-flex justify-content-between mb-2 fw-light"
+          >
+            {{ item.product.title }} x {{ item.quantity }}
+            <span class="fw-bold">{{ item.product.price | currency }}</span>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between py-3 fw-light">
+          Total:
+          <span class="fw-bold">{{ getTotal() | currency }}</span>
+        </div>
+        <hr />
+        <div class="pt-3 d-flex justify-content-between">
+          <button
+            mat-icon-button
+            (click)="onClearCart()"
+            class="bg-danger rounded"
+          >
+            <mat-icon>remove_shopping_cart</mat-icon>
+          </button>
+          <button mat-icon-button class="bg-success rounded" routerLink="cart">
+            <mat-icon>shopping_cart_checkout</mat-icon>
+          </button>
+        </div>
+      </div>
+    </mat-menu>
+  </div>
+</mat-toolbar>

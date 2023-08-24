@@ -2,7 +2,11 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, tap } from 'rxjs';
 import { env } from 'src/environments/environment';
-import { CustomResponse } from '../model/custom-response';
+import {
+  CustomResponse,
+  ProductType,
+  ProductsType,
+} from '../model/custom-response';
 import { Product } from '../model/product';
 
 @Injectable({
@@ -12,8 +16,8 @@ export class ProductService {
   private readonly url = env.apiUrl + '/product';
   constructor(private http: HttpClient) {}
 
-  getAllproducts(): Observable<CustomResponse<Product[]>> {
-    return this.http.get<CustomResponse<Product[]>>(this.url + '/list');
+  getAllproducts(): Observable<CustomResponse<ProductsType>> {
+    return this.http.get<CustomResponse<ProductsType>>(this.url + '/list');
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
