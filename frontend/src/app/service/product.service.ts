@@ -4,6 +4,7 @@ import { Observable, catchError, tap } from 'rxjs';
 import { env } from 'src/environments/environment';
 import {
   CustomResponse,
+  ProductDeleteType,
   ProductType,
   ProductsType,
 } from '../model/custom-response';
@@ -18,6 +19,23 @@ export class ProductService {
 
   getAllproducts(): Observable<CustomResponse<ProductsType>> {
     return this.http.get<CustomResponse<ProductsType>>(this.url + '/list');
+  }
+
+  createProduct(product: Product): Observable<CustomResponse<ProductType>> {
+    console.log(product);
+    return this.http.post<CustomResponse<ProductType>>(
+      this.url + '/create',
+      product
+    );
+  }
+
+  deleteProduct(
+    product: Product
+  ): Observable<CustomResponse<ProductDeleteType>> {
+    console.log(product);
+    return this.http.delete<CustomResponse<ProductDeleteType>>(
+      this.url + `/delete/${product.productId}`
+    );
   }
 
   private handleError(error: HttpErrorResponse): Observable<never> {

@@ -23,9 +23,23 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HomeComponent } from './page/home/home.component';
 import { ProductCardComponent } from './page/home/components/product-card/product-card.component';
 import { ProductsHeaderComponent } from './page/home/components/products-header/products-header.component';
+import { ProductManageComponent } from './page/manage/product-manage/product-manage.component';
+import { FormsModule } from '@angular/forms';
+import { ProductList } from './page/manage/product-manage/components/product-list/product-list';
+import { ProductEditFormComponent } from './page/manage/product-manage/components/product-edit-form/product-edit-form.component';
+import { ProductDeleteConfirmComponent } from './page/manage/product-manage/components/product-delete-confirm/product-delete-confirm.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, HomeComponent, ProductCardComponent, ProductsHeaderComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    HomeComponent,
+    ProductCardComponent,
+    ProductsHeaderComponent,
+    ProductManageComponent,
+    ProductEditFormComponent,
+    ProductDeleteConfirmComponent,
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -45,6 +59,8 @@ import { ProductsHeaderComponent } from './page/home/components/products-header/
     MatTableModule,
     MatBadgeModule,
     MatSnackBarModule,
+    ProductList,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

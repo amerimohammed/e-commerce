@@ -17,3 +17,7 @@ export type ProductType = {
 export type ProductsType = {
   products: Product[];
 };
+
+export type ProductDeleteType = {
+  deleted: boolean;
+};

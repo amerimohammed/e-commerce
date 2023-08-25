@@ -1,0 +1,69 @@
+<p>You can search through <code>All fields</code> using the Search field:</p>
+
+<form>
+  <div class="mb-3 row">
+    <label
+      for="table-filtering-search"
+      class="col-xs-3 col-sm-auto col-form-label"
+      >Search:</label
+    >
+    <div class="col-xs-3 col-sm-auto">
+      <input
+        id="table-filtering-search"
+        class="form-control"
+        type="text"
+        [formControl]="filter"
+      />
+    </div>
+  </div>
+</form>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Code</th>
+      <th scope="col">Title</th>
+      <th scope="col">Price</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products$ | async; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        <img
+          src="https://placehold.co/600x400"
+          class="me-2"
+          style="width: 20px"
+        />
+        <ngb-highlight
+          [result]="product.code"
+          [term]="filter.value"
+        ></ngb-highlight>
+      </td>
+      <td>
+        <ngb-highlight
+          [result]="product.title"
+          [term]="filter.value"
+        ></ngb-highlight>
+      </td>
+      <td>
+        <ngb-highlight
+          [result]="product.price | number "
+          [term]="filter.value"
+        ></ngb-highlight>
+      </td>
+      <td class="text-end">
+        <button
+          class="btn btn-outline-secondary me-2 bi bi-pencil-square"
+          (click)="editProduct(product)"
+        ></button>
+        <button
+          class="btn btn-outline-danger bi bi-trash-fill"
+          (click)="deleteProduct(product)"
+        ></button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,54 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="closeModal('close')"
+  ></button>
+</div>
+<div class="modal-body">
+  <form #productForm="ngForm">
+    <div class="mb-3">
+      <label for="code">Code</label>
+      <div class="input-group">
+        <input
+          class="form-control"
+          type="text"
+          id="code"
+          name="code"
+          [(ngModel)]="product.code"
+        />
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="title">Title</label>
+      <div class="input-group">
+        <input
+          class="form-control"
+          type="text"
+          id="title"
+          name="title"
+          [(ngModel)]="product.title"
+        />
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="price">Price</label>
+      <div class="input-group">
+        <input
+          class="form-control"
+          type="number"
+          id="price"
+          name="price"
+          [(ngModel)]="product.price"
+        />
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-dark" (click)="onSubmit()">
+    Save
+  </button>
+</div>

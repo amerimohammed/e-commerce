@@ -1,0 +1,9 @@
+<div class="text-end mt-5 mb-3">
+  <button class="btn btn-outline-success" (click)="openModalCreate()">
+    + New Product
+  </button>
+</div>
+<product-list
+  (onEditProduct)="openModalEdit($event)"
+  (onDeleteProduct)="openModalDelete($event)"
+></product-list>

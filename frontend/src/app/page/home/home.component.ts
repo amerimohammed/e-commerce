@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   productSubscription: Subscription | undefined;
 
   constructor(
-    private proudctService: ProductService,
+    private productService: ProductService,
     private cartService: CartService
   ) {}
 
@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.getProducts();
   }
   getProducts(): void {
-    this.productSubscription = this.proudctService
+    this.productSubscription = this.productService
       .getAllproducts()
       .subscribe((_products) => {
         console.log(_products);
