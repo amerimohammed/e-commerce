@@ -33,9 +33,12 @@
       <th scope="row">{{ i + 1 }}</th>
       <td>
         <img
-          src="https://placehold.co/600x400"
-          class="me-2"
-          style="width: 20px"
+          src="{{
+            product.productImages.length > 0
+              ? apiUrl + product.productImages[0].imageUrl
+              : apiUrl + '/images/product.png'
+          }}"
+          class="img-thumbnail me-2 product-img-thumbnail"
         />
         <ngb-highlight
           [result]="product.code"

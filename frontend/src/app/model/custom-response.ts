@@ -1,4 +1,4 @@
-import { Product } from './product';
+import { Product, ProductImage } from './product';
 
 export type CustomResponse<T> = {
   timestamp: Date;
@@ -19,5 +19,13 @@ export type ProductsType = {
 };
 
 export type ProductDeleteType = {
+  deleted: boolean;
+};
+
+export type ImageType = {
+  image: ProductImage;
+};
+
+export type ImageDeleteType = {
   deleted: boolean;
 };

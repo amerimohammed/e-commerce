@@ -190,3 +190,8 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+#to exclude the photos
+uploads/**
+# exception to the rule the default photo
+!uploads/product.png

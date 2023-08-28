@@ -49,4 +49,10 @@ public class ProductServiceImpl implements ProductService {
         productRepo.deleteById(productId);
         return true;
     }
+
+    @Override
+    public Product save(Product product) {
+        log.info("Saving product: {}", product.getCode());
+        return productRepo.save(product);
+    }
 }

@@ -1,9 +1,17 @@
-<mat-card *ngIf="product" [ngClass]="{ 'text-center': !fullWidthMode }">
-  <div [ngClass]="{ flex: fullWidthMode }">
+<mat-card
+  *ngIf="product"
+  [ngClass]="{ 'text-center': !fullWidthMode }"
+  [routerLink]="['/product', product.productId]"
+>
+  <div [ngClass]="{ 'd-flex': fullWidthMode }">
     <img
-      src="https://placehold.co/600x400"
+      src="{{
+        product.productImages.length > 0
+          ? apiUrl + product.productImages[0].imageUrl
+          : apiUrl + '/images/product.png'
+      }}"
       class="mb-1 mx-auto product-img"
-      [ngClass]="{ 'h-[200px]': !fullWidthMode, 'h-[360px]': fullWidthMode }"
+      [ngClass]="{ 'h-200': !fullWidthMode, 'h-360': fullWidthMode }"
     />
     <div
       class="w-100 p-1"
@@ -24,7 +32,7 @@
       <div class="d-flex justify-content-between align-items-center">
         <span class="text-danger">{{ product.price | currency }}</span>
         <button mat-icon-button (click)="onAddToCart()">
-          <mat-icon class="text-success">shopping_cart</mat-icon>
+          <mat-icon class="text-primary">shopping_cart</mat-icon>
         </button>
       </div>
     </div>

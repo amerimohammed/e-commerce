@@ -1,0 +1,11 @@
+<div class="container">
+  <form>
+    <div class="form-group">
+      <input #imageFile type="file" (change)="onImageUpload($event)" />
+      <button class="btn btn-outline-primary" (click)="imageUploadAction()">
+        <i class="bi bi-file-earmark-arrow-up-fill"></i>
+        Upload
+      </button>
+    </div>
+  </form>
+</div>

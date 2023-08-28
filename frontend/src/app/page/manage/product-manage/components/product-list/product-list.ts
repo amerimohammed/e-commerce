@@ -18,6 +18,7 @@ import { CustomResponse, ProductsType } from 'src/app/model/custom-response';
 import { DataState } from 'src/app/enum/data-state.enum';
 import { Product } from 'src/app/model/product';
 import { MatIconModule } from '@angular/material/icon';
+import { env } from 'src/environments/environment';
 
 @Component({
   selector: 'product-list',
@@ -31,6 +32,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
   ],
   templateUrl: './product-list.html',
+  styleUrls: ['./product-list.css'],
   providers: [DecimalPipe],
 })
 export class ProductList implements OnInit, OnDestroy {
@@ -38,7 +40,7 @@ export class ProductList implements OnInit, OnDestroy {
     dataState: DataState.LOADING,
   };
   private productSubscription: Subscription | undefined;
-
+  apiUrl = env.apiUrl;
   products$: Observable<Product[] | undefined>;
   filter = new FormControl('', { nonNullable: true });
 

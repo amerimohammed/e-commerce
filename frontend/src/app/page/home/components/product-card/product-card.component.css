@@ -1,5 +1,11 @@
 .product-img {
   height: 200px;
   width: 100%;
-  object-fit: cover;
+  object-fit: contain;
+}
+.h-200 {
+  height: 200px;
+}
+.h-360 {
+  height: 360px;
 }

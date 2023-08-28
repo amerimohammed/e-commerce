@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Product } from 'src/app/model/product';
+import { env } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product-card',
@@ -10,6 +11,8 @@ export class ProductCardComponent {
   @Input() fullWidthMode = false;
   @Input() product: Product | undefined;
   @Output() addToCart = new EventEmitter();
+
+  apiUrl = env.apiUrl;
 
   constructor() {}
 

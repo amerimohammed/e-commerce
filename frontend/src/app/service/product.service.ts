@@ -24,7 +24,7 @@ export class ProductService {
   createProduct(product: Product): Observable<CustomResponse<ProductType>> {
     console.log(product);
     return this.http.post<CustomResponse<ProductType>>(
-      this.url + '/create',
+      this.url + '/save',
       product
     );
   }

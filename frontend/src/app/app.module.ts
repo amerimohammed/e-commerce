@@ -28,6 +28,9 @@ import { FormsModule } from '@angular/forms';
 import { ProductList } from './page/manage/product-manage/components/product-list/product-list';
 import { ProductEditFormComponent } from './page/manage/product-manage/components/product-edit-form/product-edit-form.component';
 import { ProductDeleteConfirmComponent } from './page/manage/product-manage/components/product-delete-confirm/product-delete-confirm.component';
+import { ImageListComponent } from './page/manage/product-manage/components/image/image-list/image-list.component';
+import { ImageUploadFormComponent } from './page/manage/product-manage/components/image/image-upload-form/image-upload-form.component';
+import { ProductComponent } from './page/product/product.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +42,9 @@ import { ProductDeleteConfirmComponent } from './page/manage/product-manage/comp
     ProductManageComponent,
     ProductEditFormComponent,
     ProductDeleteConfirmComponent,
+    ImageListComponent,
+    ImageUploadFormComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,

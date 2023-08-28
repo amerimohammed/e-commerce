@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+  <h4 class="modal-title" id="modal-basic-title">Product New/Edit</h4>
   <button
     type="button"
     class="btn-close"
@@ -45,10 +45,31 @@
         />
       </div>
     </div>
+    <div class="mb-3">
+      <label for="description">Description</label>
+      <div class="input-group">
+        <textarea
+          class="form-control"
+          id="description"
+          name="description"
+          rows="3"
+          [(ngModel)]="product.description"
+        ></textarea>
+      </div>
+    </div>
   </form>
+  <app-image-upload-form></app-image-upload-form>
+  <app-image-list></app-image-list>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-outline-dark" (click)="onSubmit()">
+  <button
+    type="button"
+    class="btn btn-outline-secondary"
+    (click)="closeModal('close')"
+  >
+    Cancel
+  </button>
+  <button type="button" class="btn btn-primary" (click)="onSubmit()">
     Save
   </button>
 </div>

@@ -10,7 +10,7 @@ import javax.persistence.*;
  */
 @MappedSuperclass
 @Data
-public abstract class Image {
+public class Image {
     @Id
     @GeneratedValue
     private Long imageId;

@@ -1,8 +1,12 @@
 package nl.miwgroningen.c11.ecommerce.ECommerce.Project.controller;
 
 import lombok.RequiredArgsConstructor;
+import nl.miwgroningen.c11.ecommerce.ECommerce.Project.dto.ImageDto;
+import nl.miwgroningen.c11.ecommerce.ECommerce.Project.dto.ProductDto;
 import nl.miwgroningen.c11.ecommerce.ECommerce.Project.dto.Response;
+import nl.miwgroningen.c11.ecommerce.ECommerce.Project.mapper.ProductMapper;
 import nl.miwgroningen.c11.ecommerce.ECommerce.Project.model.Product;
+import nl.miwgroningen.c11.ecommerce.ECommerce.Project.service.implementation.ProductImageServiceImpl;
 import nl.miwgroningen.c11.ecommerce.ECommerce.Project.service.implementation.ProductServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +14,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static java.util.Map.of;
 import static java.time.LocalDateTime.now;
@@ -26,13 +33,20 @@ import static org.springframework.http.HttpStatus.OK;
 @RequestMapping("/product")
 public class ProductController {
     private final ProductServiceImpl productService;
+    private final ProductMapper productMapper;
+    private final ProductImageServiceImpl imageService;
 
     @GetMapping("/list")
     public ResponseEntity<Response> getProducts() {
+        List<Product> products = new ArrayList<>(productService.list(12));
+        List<ProductDto> productDtos = new ArrayList<>();
+        for (Product product : products) {
+            productDtos.add(productMapper.toProductDto(product));
+        }
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("products", productService.list(12)))
+                        .data(of("products", productDtos))
                         .message("Products retrieved")
                         .status(OK)
                         .statusCode(OK.value())
@@ -47,6 +61,23 @@ public class ProductController {
                         .timeStamp(now())
                         .data(of("product", productService.get(productId)))
                         .message("Product retrieved")
+                        .status(OK)
+                        .statusCode(OK.value())
+                        .build()
+        );
+    }
+
+    @PostMapping("/save")
+    public ResponseEntity<Response> saveProduct(@RequestBody @Valid ProductDto productDto) {
+        Product product = productMapper.toProduct(productDto);
+        product = productService.save(product);
+        List<ImageDto> imageDtos = productDto.getProductImages();
+        imageService.updateProductImages(imageDtos, product);
+        return ResponseEntity.ok(
+                Response.builder()
+                        .timeStamp(now())
+                        .data(of("product", productMapper.toProductDto(product)))
+                        .message("Product saved")
                         .status(OK)
                         .statusCode(OK.value())
                         .build()

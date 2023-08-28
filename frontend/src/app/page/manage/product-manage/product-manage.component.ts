@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductEditFormComponent } from './components/product-edit-form/product-edit-form.component';
-import { Product } from 'src/app/model/product';
+import { Product, ProductImage } from 'src/app/model/product';
 import { ProductDeleteConfirmComponent } from './components/product-delete-confirm/product-delete-confirm.component';
+import { Subscription } from 'rxjs';
+import { ImageService } from './components/image/image.service';
 
 @Component({
   selector: 'app-product-manage',
@@ -11,7 +13,11 @@ import { ProductDeleteConfirmComponent } from './components/product-delete-confi
 })
 export class ProductManageComponent {
   private product: Product;
-  constructor(private modalService: NgbModal) {
+
+  constructor(
+    private modalService: NgbModal,
+    private imageService: ImageService
+  ) {
     this.product = this.initializeProduct();
   }
 
@@ -51,11 +57,13 @@ export class ProductManageComponent {
 
   openModalCreate() {
     this.product = this.initializeProduct();
+    this.imageService.images.next([]);
     this.openModal();
   }
 
   openModalEdit(product: Product): void {
     this.product = product;
+    this.imageService.images.next(product.productImages);
     this.openModal();
   }
 

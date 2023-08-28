@@ -1,0 +1,25 @@
+<div class="d-flex mt-2 mb-2 flex-gap-10">
+  <div *ngFor="let image of productImages" class="position-relative">
+    <!-- <span
+      class="position-absolute top-0 end-0 translate-middle p-1 bg-danger text-light border border-light rounded-circle"
+    >
+      x
+    </span> -->
+    <!-- <span class="position-absolute top-0 end-0">
+      <i class="bi bi-x-circle-fill"></i>
+    </span> -->
+    <button
+      mat-icon-button
+      color="warn"
+      class="position-absolute remove-icon"
+      ngbTooltip="Rmove"
+      (click)="onDelete(image.imageId)"
+    >
+      <mat-icon>remove_circle</mat-icon>
+    </button>
+    <img
+      class="img-thumbnail product-thumbnail"
+      src="{{ apiUrl + image.imageUrl }}"
+    />
+  </div>
+</div>

@@ -6,5 +6,10 @@ export interface Product {
   currentQuantity: number;
   soldQuantity: number;
   description: string;
-  productImages: string[];
+  productImages: ProductImage[];
+}
+
+export interface ProductImage {
+  imageId: number;
+  imageUrl: string;
 }
