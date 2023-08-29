@@ -21,6 +21,12 @@ export class ProductService {
     return this.http.get<CustomResponse<ProductsType>>(this.url + '/list');
   }
 
+  getProduct(productId: number): Observable<CustomResponse<ProductType>> {
+    return this.http.get<CustomResponse<ProductType>>(
+      this.url + '/get/' + productId
+    );
+  }
+
   createProduct(product: Product): Observable<CustomResponse<ProductType>> {
     console.log(product);
     return this.http.post<CustomResponse<ProductType>>(

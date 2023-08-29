@@ -31,6 +31,7 @@ import { ProductDeleteConfirmComponent } from './page/manage/product-manage/comp
 import { ImageListComponent } from './page/manage/product-manage/components/image/image-list/image-list.component';
 import { ImageUploadFormComponent } from './page/manage/product-manage/components/image/image-upload-form/image-upload-form.component';
 import { ProductComponent } from './page/product/product.component';
+import { NgbdRatingTemplate } from './page/product/components/rating-template';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { ProductComponent } from './page/product/product.component';
     MatSnackBarModule,
     ProductList,
     FormsModule,
+    NgbdRatingTemplate,
   ],
   providers: [],
   bootstrap: [AppComponent],

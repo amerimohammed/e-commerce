@@ -24,7 +24,7 @@ public class SecurityConfig {
                 .sessionManagement(customizer -> customizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(requests -> requests
                         .antMatchers("/images/**").permitAll()
-                        .antMatchers(HttpMethod.GET,"/product/list").permitAll()
+                        .antMatchers(HttpMethod.GET,"/product/list", "/product/get/**").permitAll()
                         .antMatchers(HttpMethod.POST, "/product/create", "/product/save", "/image/save").permitAll()
                         .antMatchers(HttpMethod.DELETE, "/product/delete/**", "/image/delete/**").permitAll()
                         .anyRequest().authenticated());

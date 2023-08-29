@@ -1,0 +1,24 @@
+.image-container {
+  height: 570px;
+}
+.product-image {
+  height: 100%;
+  object-fit: contain;
+}
+.thumbnail-container {
+  cursor: pointer;
+}
+.product-thumbnail {
+  width: 70px;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.7;
+  transition: opacity 0.3s ease-in-out;
+}
+.active {
+  opacity: 1;
+}
+
+.product-thumbnail:hover {
+  opacity: 1;
+}

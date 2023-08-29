@@ -59,7 +59,7 @@ public class ProductController {
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())
-                        .data(of("product", productService.get(productId)))
+                        .data(of("product", productMapper.toProductDto(productService.get(productId))))
                         .message("Product retrieved")
                         .status(OK)
                         .statusCode(OK.value())

@@ -1,1 +1,67 @@
-<p>product works!</p>
+<div [ngSwitch]="appState.dataState">
+  <div
+    *ngSwitchCase="DataState.LOADING"
+    class="spinner-container d-flex justify-content-center align-items-center"
+  >
+    <div class="spinner-grow" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  <div class="card mt-3 p-2" *ngSwitchCase="DataState.LOADED">
+    <div class="row g-0">
+      <div class="col-md-6">
+        <div class="d-flex flex-column">
+          <div class="image-container">
+            <img
+              [src]="apiUrl + mainImageUrl"
+              class="img-fluid rounded-start product-image"
+              alt="..."
+            />
+          </div>
+          <div class="m-2 d-flex gap-2">
+            <div
+              *ngFor="let image of appState.appData!.data.product.productImages"
+              (click)="changeImageUrl(image.imageUrl)"
+              class="thumbnail-container"
+            >
+              <img
+                [src]="apiUrl + image.imageUrl"
+                class="img-thumbnail product-thumbnail"
+                [ngClass]="{
+                  'border-primary active': mainImageUrl == image.imageUrl
+                }"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 d-flex flex-column justify-content-between">
+        <div class="card-body">
+          <h2 class="card-title">{{ appState.appData!.data.product.title }}</h2>
+          <ngbd-rating-template></ngbd-rating-template>
+          <h3 class="text-danger p-2 fs-4">
+            {{ appState.appData!.data.product.price | currency : "EUR" }}
+          </h3>
+          <hr />
+          <p class="card-text">
+            {{ appState.appData!.data.product.description }}
+          </p>
+          <p class="card-text">
+            <small class="text-muted">Lately ordered: 3 mins ago</small>
+          </p>
+        </div>
+        <div class="text-end">
+          <button
+            mat-fab
+            extended
+            color="primary"
+            (click)="addToCart(appState.appData!.data.product)"
+          >
+            <mat-icon>shopping_cart</mat-icon>
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

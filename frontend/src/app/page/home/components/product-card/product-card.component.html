@@ -1,16 +1,13 @@
-<mat-card
-  *ngIf="product"
-  [ngClass]="{ 'text-center': !fullWidthMode }"
-  [routerLink]="['/product', product.productId]"
->
+<mat-card *ngIf="product" [ngClass]="{ 'text-center': !fullWidthMode }">
   <div [ngClass]="{ 'd-flex': fullWidthMode }">
     <img
+      [routerLink]="['/product', product.productId]"
       src="{{
         product.productImages.length > 0
           ? apiUrl + product.productImages[0].imageUrl
           : apiUrl + '/images/product.png'
       }}"
-      class="mb-1 mx-auto product-img"
+      class="mb-1 mx-auto product-img cursor-p"
       [ngClass]="{ 'h-200': !fullWidthMode, 'h-360': fullWidthMode }"
     />
     <div
@@ -22,7 +19,8 @@
       <div>
         <h5>{{ product.code }}</h5>
         <p
-          class="truncate hover:whitespace-normal"
+          [routerLink]="['/product', product.productId]"
+          class="truncate hover:whitespace-normal cursor-p"
           [ngClass]="{ truncate: !fullWidthMode }"
         >
           {{ product.title }}
@@ -30,7 +28,7 @@
         <p *ngIf="fullWidthMode">{{ product.description }}</p>
       </div>
       <div class="d-flex justify-content-between align-items-center">
-        <span class="text-danger">{{ product.price | currency }}</span>
+        <span class="text-danger">{{ product.price | currency : "EUR" }}</span>
         <button mat-icon-button (click)="onAddToCart()">
           <mat-icon class="text-primary">shopping_cart</mat-icon>
         </button>
