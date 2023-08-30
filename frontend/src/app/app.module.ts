@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './layout/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -32,6 +32,8 @@ import { ImageListComponent } from './page/manage/product-manage/components/imag
 import { ImageUploadFormComponent } from './page/manage/product-manage/components/image/image-upload-form/image-upload-form.component';
 import { ProductComponent } from './page/product/product.component';
 import { NgbdRatingTemplate } from './page/product/components/rating-template';
+import { LoginModalComponent } from './layout/login-modal/login-modal';
+import { AuthComponent } from './layout/header/components/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,8 @@ import { NgbdRatingTemplate } from './page/product/components/rating-template';
     ImageListComponent,
     ImageUploadFormComponent,
     ProductComponent,
+    LoginModalComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +73,7 @@ import { NgbdRatingTemplate } from './page/product/components/rating-template';
     ProductList,
     FormsModule,
     NgbdRatingTemplate,
+    NgbNavModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

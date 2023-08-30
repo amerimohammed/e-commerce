@@ -9,6 +9,7 @@ import nl.miwgroningen.c11.ecommerce.ECommerce.Project.model.Product;
 import nl.miwgroningen.c11.ecommerce.ECommerce.Project.service.implementation.ProductImageServiceImpl;
 import nl.miwgroningen.c11.ecommerce.ECommerce.Project.service.implementation.ProductServiceImpl;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -16,7 +17,6 @@ import javax.validation.Valid;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.Map.of;
 import static java.time.LocalDateTime.now;
@@ -36,6 +36,7 @@ public class ProductController {
     private final ProductMapper productMapper;
     private final ProductImageServiceImpl imageService;
 
+
     @GetMapping("/list")
     public ResponseEntity<Response> getProducts() {
         List<Product> products = new ArrayList<>(productService.list(12));
@@ -53,6 +54,7 @@ public class ProductController {
                         .build()
         );
     }
+
 
     @GetMapping("/get/{productId}")
     public ResponseEntity<Response> getProduct(@PathVariable("productId") Long productId) {

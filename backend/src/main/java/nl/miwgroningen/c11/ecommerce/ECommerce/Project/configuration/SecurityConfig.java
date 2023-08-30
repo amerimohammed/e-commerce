@@ -1,13 +1,16 @@
 package nl.miwgroningen.c11.ecommerce.ECommerce.Project.configuration;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
 /**
  * @author Mohammed Alameri on 22/08/2023.
@@ -15,18 +18,21 @@ import org.springframework.security.web.SecurityFilterChain;
  */
 
 @Configuration
-@EnableWebSecurity
+@RequiredArgsConstructor
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
+    private final UserAuthProvider userAuthProvider;
+    private final UserAuthenticationEntryPoint userAuthenticationEntryPoint;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
+                .exceptionHandling(customizer -> customizer.authenticationEntryPoint(userAuthenticationEntryPoint))
+                .addFilterBefore(new JwtAuthFilter(userAuthProvider), BasicAuthenticationFilter.class)
                 .sessionManagement(customizer -> customizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(requests -> requests
-                        .antMatchers("/images/**").permitAll()
-                        .antMatchers(HttpMethod.GET,"/product/list", "/product/get/**").permitAll()
-                        .antMatchers(HttpMethod.POST, "/product/create", "/product/save", "/image/save").permitAll()
-                        .antMatchers(HttpMethod.DELETE, "/product/delete/**", "/image/delete/**").permitAll()
+                        .antMatchers(HttpMethod.GET, "/images/**","/product/list", "/product/get/**").permitAll()
+                        .antMatchers(HttpMethod.POST, "/login", "/register").permitAll()
                         .anyRequest().authenticated());
         return http.build();
     }

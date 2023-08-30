@@ -1,0 +1,75 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">
+    {{isRegister? 'Register' : 'Login'}}
+  </h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="closeModal('close')"
+  ></button>
+</div>
+<div class="modal-body">
+  <form #loginForm="ngForm">
+    <div class="mb-3" *ngIf="isRegister">
+      <label for="firstName">First Name:</label>
+      <div class="input-group">
+        <input
+          class="form-control"
+          type="text"
+          id="firstName"
+          name="firstName"
+          [(ngModel)]="user.firstName"
+        />
+      </div>
+    </div>
+    <div class="mb-3" *ngIf="isRegister">
+      <label for="lastName">Last Name:</label>
+      <div class="input-group">
+        <input
+          class="form-control"
+          type="text"
+          id="lastName"
+          name="lastName"
+          [(ngModel)]="user.lastName"
+        />
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="username">Username:</label>
+      <div class="input-group">
+        <input
+          class="form-control"
+          type="text"
+          id="username"
+          name="username"
+          [(ngModel)]="user.username"
+        />
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="password">Password:</label>
+      <div class="input-group">
+        <input
+          class="form-control"
+          id="password"
+          name="password"
+          type="password"
+          [(ngModel)]="user.password"
+        />
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer d-flex justify-content-between">
+  <div>
+    {{isRegister?'Already have an account?':'Need an account?'}}
+    <button mat-button color="primary" (click)="changeModalState()">
+      {{isRegister?'Login':'Register'}}
+    </button>
+  </div>
+  <button type="button" class="btn btn-primary" (click)="submit()">
+    Submit
+    <i class="bi bi-send"></i>
+  </button>
+</div>
