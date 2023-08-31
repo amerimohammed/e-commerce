@@ -1,4 +1,8 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, tap } from 'rxjs';
 import { env } from 'src/environments/environment';
@@ -27,20 +31,34 @@ export class ProductService {
     );
   }
 
-  createProduct(product: Product): Observable<CustomResponse<ProductType>> {
-    console.log(product);
+  createProduct(
+    product: Product,
+    token: string
+  ): Observable<CustomResponse<ProductType>> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    const requestOptions = { headers: headers };
+
     return this.http.post<CustomResponse<ProductType>>(
       this.url + '/save',
-      product
+      product,
+      requestOptions
     );
   }
 
   deleteProduct(
-    product: Product
+    product: Product,
+    token: string
   ): Observable<CustomResponse<ProductDeleteType>> {
-    console.log(product);
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    const requestOptions = { headers: headers };
+
     return this.http.delete<CustomResponse<ProductDeleteType>>(
-      this.url + `/delete/${product.productId}`
+      this.url + `/delete/${product.productId}`,
+      requestOptions
     );
   }
 

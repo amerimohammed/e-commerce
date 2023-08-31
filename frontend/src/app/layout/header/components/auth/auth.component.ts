@@ -34,8 +34,12 @@ export class AuthComponent implements OnInit, OnDestroy {
   }
 
   logout(): void {
-    this.authService.currentUser$.next(null);
+    this.authService.logout();
   }
+
+  hasRole = (allowedRoles: string[]): boolean => {
+    return this.authService.isAllowed(allowedRoles);
+  };
 
   ngOnDestroy(): void {
     if (this.currentUserSubscription) {

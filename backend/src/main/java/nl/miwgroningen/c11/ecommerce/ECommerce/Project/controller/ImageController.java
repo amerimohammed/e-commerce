@@ -7,6 +7,7 @@ import nl.miwgroningen.c11.ecommerce.ECommerce.Project.mapper.ImageMapper;
 import nl.miwgroningen.c11.ecommerce.ECommerce.Project.model.ProductImage;
 import nl.miwgroningen.c11.ecommerce.ECommerce.Project.service.implementation.ProductImageServiceImpl;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,6 +26,7 @@ public class ImageController {
     private final ImageMapper imageMapper;
     private final ProductImageServiceImpl imageService;
 
+    @PreAuthorize("hasAnyRole('ROLE_EDITOR', 'ROLE_ADMIN')")
     @PostMapping("/save")
     public ResponseEntity<Response> saveImage(@RequestParam("imageFile")MultipartFile imageFile) throws IOException {
         if(!imageFile.isEmpty()){
@@ -46,6 +48,7 @@ public class ImageController {
         }
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_EDITOR', 'ROLE_ADMIN')")
     @DeleteMapping("/delete/{imageId}")
     public ResponseEntity<Response> deleteImage(@PathVariable("imageId") Long imageId) {
         return ResponseEntity.ok(

@@ -27,7 +27,11 @@
 </button>
 
 <mat-menu #menu="matMenu">
-  <button mat-menu-item>
+  <button
+    mat-menu-item
+    routerLink="dashboard"
+    *ngIf="hasRole(['ROLE_ADMIN', 'ROLE_EDITOR'])"
+  >
     <mat-icon>dashboard</mat-icon>
     <span>Dashboard</span>
   </button>

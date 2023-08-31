@@ -44,6 +44,7 @@ export class LoginModalComponent implements OnInit, OnDestroy {
       this.authService.register(this.user).subscribe((response) => {
         this.authService.currentUser$.next(response.data.user);
         this.closeModal('registered');
+        localStorage.setItem('currentUser', JSON.stringify(response.data.user));
       });
     } else {
       this.authService
@@ -51,6 +52,10 @@ export class LoginModalComponent implements OnInit, OnDestroy {
         .subscribe((response) => {
           this.authService.currentUser$.next(response.data.user);
           this.closeModal('logged in');
+          localStorage.setItem(
+            'currentUser',
+            JSON.stringify(response.data.user)
+          );
         });
     }
   }

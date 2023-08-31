@@ -34,6 +34,9 @@ import { ProductComponent } from './page/product/product.component';
 import { NgbdRatingTemplate } from './page/product/components/rating-template';
 import { LoginModalComponent } from './layout/login-modal/login-modal';
 import { AuthComponent } from './layout/header/components/auth/auth.component';
+import { DashboardComponent } from './page/manage/dashboard/dashboard.component';
+import { UserManageComponent } from './page/manage/user-manage/user-manage.component';
+import { OrderManageComponent } from './page/manage/order-manage/order-manage.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +53,9 @@ import { AuthComponent } from './layout/header/components/auth/auth.component';
     ProductComponent,
     LoginModalComponent,
     AuthComponent,
+    DashboardComponent,
+    UserManageComponent,
+    OrderManageComponent,
   ],
   imports: [
     BrowserModule,

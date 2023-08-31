@@ -69,6 +69,7 @@ public class ProductController {
         );
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_EDITOR', 'ROLE_ADMIN')")
     @PostMapping("/save")
     public ResponseEntity<Response> saveProduct(@RequestBody @Valid ProductDto productDto) {
         Product product = productMapper.toProduct(productDto);
@@ -86,6 +87,7 @@ public class ProductController {
         );
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_EDITOR', 'ROLE_ADMIN')")
     @PostMapping("/create")
     public ResponseEntity<Response> createProduct(@RequestBody @Valid Product product) {
         Product savedProduct = productService.create(product);
@@ -101,6 +103,7 @@ public class ProductController {
         );
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_EDITOR', 'ROLE_ADMIN')")
     @PatchMapping("/update")
     public ResponseEntity<Response> updateProduct(@RequestBody @Valid Product product) {
         return ResponseEntity.ok(
@@ -114,6 +117,7 @@ public class ProductController {
         );
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_EDITOR', 'ROLE_ADMIN')")
     @DeleteMapping("/delete/{productId}")
     public ResponseEntity<Response> deleteProduct(@PathVariable("productId") Long productId) {
         return ResponseEntity.ok(

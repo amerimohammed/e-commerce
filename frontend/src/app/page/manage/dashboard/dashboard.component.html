@@ -1,0 +1,33 @@
+<div class="m-5 d-flex gap-xxl-5">
+  <button
+    type="button"
+    class="btn btn-outline-primary"
+    routerLink="/manage/product"
+  >
+    <div class="p-5">
+      <h6 class="fs-2">Manage Products</h6>
+      <i class="bi bi-bag-fill fs-1"></i>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="btn btn-outline-info"
+    routerLink="/manage/user"
+    *ngIf="hasRole(['ROLE_ADMIN'])"
+  >
+    <div class="p-5">
+      <h6 class="fs-2">Manage Users</h6>
+      <i class="bi bi-people-fill fs-1"></i>
+    </div>
+  </button>
+  <button
+    type="button"
+    class="btn btn-outline-success"
+    routerLink="/manage/order"
+  >
+    <div class="p-5">
+      <h6 class="fs-2">Manage Orders</h6>
+      <i class="bi bi-bar-chart-line-fill fs-1"></i>
+    </div>
+  </button>
+</div>
