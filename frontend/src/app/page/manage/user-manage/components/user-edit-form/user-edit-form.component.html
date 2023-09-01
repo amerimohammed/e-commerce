@@ -1,0 +1,77 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">User Edit</h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="closeModal('close')"
+  ></button>
+</div>
+<div class="modal-body">
+  <form #productForm="ngForm">
+    <div class="mb-3">
+      <label for="username">Username</label>
+      <div class="input-group">
+        <input
+          class="form-control"
+          type="text"
+          id="username"
+          name="username"
+          [(ngModel)]="user.username"
+        />
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="firstName">First Name</label>
+      <div class="input-group">
+        <input
+          class="form-control"
+          type="text"
+          id="firstName"
+          name="firstName"
+          [(ngModel)]="user.firstName"
+        />
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="lastName">Last Name</label>
+      <div class="input-group">
+        <input
+          class="form-control"
+          type="text"
+          id="lastName"
+          name="lastName"
+          [(ngModel)]="user.lastName"
+        />
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="roles">Roles</label>
+      <div class="input-group">
+        <mat-chip-listbox
+          aria-label="Fish selection"
+          [(ngModel)]="user.roles"
+          multiple
+          id="roles"
+          name="roles"
+        >
+          <mat-chip-option *ngFor="let selectRole of selectRoles">{{
+            selectRole
+          }}</mat-chip-option>
+        </mat-chip-listbox>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-outline-secondary"
+    (click)="closeModal('close')"
+  >
+    Cancel
+  </button>
+  <button type="button" class="btn btn-primary" (click)="onSubmit()">
+    Save
+  </button>
+</div>

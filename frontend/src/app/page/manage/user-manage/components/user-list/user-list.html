@@ -1,0 +1,72 @@
+<p>You can search through <code>All fields</code> using the Search field:</p>
+
+<form>
+  <div class="mb-3 row">
+    <label
+      for="table-filtering-search"
+      class="col-xs-3 col-sm-auto col-form-label"
+      >Search:</label
+    >
+    <div class="col-xs-3 col-sm-auto">
+      <input
+        id="table-filtering-search"
+        class="form-control"
+        type="text"
+        [formControl]="filter"
+      />
+    </div>
+  </div>
+</form>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Username</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Roles</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users$ | async; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        <i class="bi bi-person-badge"></i>
+        <ngb-highlight
+          [result]="user.username"
+          [term]="filter.value"
+        ></ngb-highlight>
+      </td>
+      <td>
+        <ngb-highlight
+          [result]="user.firstName"
+          [term]="filter.value"
+        ></ngb-highlight>
+      </td>
+      <td>
+        <ngb-highlight
+          [result]="user.lastName"
+          [term]="filter.value"
+        ></ngb-highlight>
+      </td>
+      <td>
+        <ngb-highlight
+          [result]="user.roles.toString()"
+          [term]="filter.value"
+        ></ngb-highlight>
+      </td>
+      <td class="text-end">
+        <button
+          class="btn btn-outline-secondary me-2 bi bi-pencil-square"
+          (click)="editUser(user)"
+        ></button>
+        <button
+          class="btn btn-outline-danger bi bi-trash-fill"
+          (click)="deleteUser(user)"
+        ></button>
+      </td>
+    </tr>
+  </tbody>
+</table>

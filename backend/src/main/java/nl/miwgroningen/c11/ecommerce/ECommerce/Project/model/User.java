@@ -47,4 +47,9 @@ public class User {
 
         return rolesList;
     }
+
+    public void addRole(Role role) {
+        if(this.roles == null) this.roles = new HashSet<>();
+        this.roles.add(role);
+    }
 }

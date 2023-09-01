@@ -37,6 +37,11 @@ import { AuthComponent } from './layout/header/components/auth/auth.component';
 import { DashboardComponent } from './page/manage/dashboard/dashboard.component';
 import { UserManageComponent } from './page/manage/user-manage/user-manage.component';
 import { OrderManageComponent } from './page/manage/order-manage/order-manage.component';
+import { UserDeleteConfirmComponent } from './page/manage/user-manage/components/user-delete-confirm/user-delete-confirm.component';
+import { UserList } from './page/manage/user-manage/components/user-list/user-list';
+import { UserEditFormComponent } from './page/manage/user-manage/components/user-edit-form/user-edit-form.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { ProductSlideComponent } from './page/home/components/product-slide/product-slide.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +61,8 @@ import { OrderManageComponent } from './page/manage/order-manage/order-manage.co
     DashboardComponent,
     UserManageComponent,
     OrderManageComponent,
+    UserDeleteConfirmComponent,
+    UserEditFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,6 +87,9 @@ import { OrderManageComponent } from './page/manage/order-manage/order-manage.co
     FormsModule,
     NgbdRatingTemplate,
     NgbNavModule,
+    UserList,
+    MatChipsModule,
+    ProductSlideComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

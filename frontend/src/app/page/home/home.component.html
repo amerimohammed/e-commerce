@@ -1,5 +1,8 @@
 <mat-drawer-container [autosize]="true" class="min-vh-100 mx-auto">
   <mat-drawer-content class="p-5">
+    <div class="d-flex justify-content-center mb-5">
+      <app-product-slide style="width: 100%; height: 450px; overflow: hidden" />
+    </div>
     <app-products-header
       (columnsNumberChange)="onColumnsCountChanged($event)"
       (itemsCountChange)="onItemsCountChange($event)"

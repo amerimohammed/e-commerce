@@ -22,3 +22,11 @@ export interface SignUp {
 export type UserType = {
   user: User;
 };
+
+export type UsersType = {
+  users: User[];
+};
+
+export type UserDeleteType = {
+  deleted: boolean;
+};

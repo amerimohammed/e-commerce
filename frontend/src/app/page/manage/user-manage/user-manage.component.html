@@ -1,1 +1,6 @@
-<p>user-manage works!</p>
+<div class="mt-5">
+  <user-list
+    (onEditUser)="openModalEdit($event)"
+    (onDeleteUser)="openModalDelete($event)"
+  ></user-list>
+</div>
