@@ -31,7 +31,9 @@ public class SecurityConfig {
                 .addFilterBefore(new JwtAuthFilter(userAuthProvider), BasicAuthenticationFilter.class)
                 .sessionManagement(customizer -> customizer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(requests -> requests
-                        .antMatchers(HttpMethod.GET, "/images/**","/product/list", "/product/get/**").permitAll()
+                        .antMatchers(HttpMethod.GET,
+                                "/images/**", "/product/list", "/product/get/**", "/slide/list")
+                        .permitAll()
                         .antMatchers(HttpMethod.POST, "/login", "/register").permitAll()
                         .anyRequest().authenticated());
         return http.build();

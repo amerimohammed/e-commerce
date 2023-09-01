@@ -1,0 +1,45 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">New Slide</h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="closeModal('close')"
+  ></button>
+</div>
+<div class="modal-body">
+  <form #productForm="ngForm">
+    <div class="mb-3">
+      <label for="imageFile">Slide image</label>
+      <div class="input-group">
+        <input #imageFile type="file" (change)="onImageChange($event)" />
+      </div>
+    </div>
+    <div class="mb-3">
+      <div class="input-group">
+        <mat-form-field>
+          <mat-label>Select a product</mat-label>
+          <mat-select name="productId" [(ngModel)]="slide.productId">
+            <mat-option
+              *ngFor="let product of products"
+              [value]="product.productId"
+              >{{ product.code }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-outline-secondary"
+    (click)="closeModal('close')"
+  >
+    Cancel
+  </button>
+  <button type="button" class="btn btn-primary" (click)="onSubmit()">
+    Save
+  </button>
+</div>

@@ -1,0 +1,8 @@
+.btn-dashboard {
+  min-width: 350px;
+}
+
+.d-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
+}

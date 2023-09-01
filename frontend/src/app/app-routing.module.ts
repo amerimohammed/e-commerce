@@ -8,6 +8,7 @@ import { UserManageComponent } from './page/manage/user-manage/user-manage.compo
 import { OrderManageComponent } from './page/manage/order-manage/order-manage.component';
 import { isAuthenticatedGuard } from './guard/is-authenticated.guard';
 import { hasRoleGuard } from './guard/has-role.guard';
+import { SlideManageComponent } from './page/manage/slide-manage/slide-manage.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -36,6 +37,12 @@ const routes: Routes = [
   {
     path: 'manage/order',
     component: OrderManageComponent,
+    canActivate: [isAuthenticatedGuard, hasRoleGuard],
+    data: { allowedRoles: ['ROLE_ADMIN', 'ROLE_EDITOR'] },
+  },
+  {
+    path: 'manage/slide',
+    component: SlideManageComponent,
     canActivate: [isAuthenticatedGuard, hasRoleGuard],
     data: { allowedRoles: ['ROLE_ADMIN', 'ROLE_EDITOR'] },
   },

@@ -42,6 +42,13 @@ import { UserList } from './page/manage/user-manage/components/user-list/user-li
 import { UserEditFormComponent } from './page/manage/user-manage/components/user-edit-form/user-edit-form.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { ProductSlideComponent } from './page/home/components/product-slide/product-slide.component';
+import { SlideDeleteConfirmComponent } from './page/manage/slide-manage/components/slide-delete-confirm/slide-delete-confirm.component';
+import { SlideEditFormComponent } from './page/manage/slide-manage/components/slide-edit-form/slide-edit-form.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { SlideManageComponent } from './page/manage/slide-manage/slide-manage.component';
+import { SlideList } from './page/manage/slide-manage/components/product-list/slide-list';
+import { CartComponent } from './layout/header/components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +70,9 @@ import { ProductSlideComponent } from './page/home/components/product-slide/prod
     OrderManageComponent,
     UserDeleteConfirmComponent,
     UserEditFormComponent,
+    SlideDeleteConfirmComponent,
+    SlideEditFormComponent,
+    SlideManageComponent,
   ],
   imports: [
     BrowserModule,
@@ -90,6 +100,10 @@ import { ProductSlideComponent } from './page/home/components/product-slide/prod
     UserList,
     MatChipsModule,
     ProductSlideComponent,
+    MatFormFieldModule,
+    MatSelectModule,
+    SlideList,
+    CartComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

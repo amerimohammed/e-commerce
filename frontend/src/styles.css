@@ -11,3 +11,6 @@ body {
 .spinner-container {
   height: 80vh;
 }
+.cdk-overlay-container {
+  z-index: 1056 !important;
+}

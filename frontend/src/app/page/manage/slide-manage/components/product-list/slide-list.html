@@ -1,0 +1,30 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Slide Image</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let slide of slides; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>
+        <img
+          src="{{
+             apiUrl + slide.imageUrl
+              
+          }}"
+          class="img-thumbnail me-2 slide-img-thumbnail"
+        />
+      </td>
+
+      <td class="text-end">
+        <button
+          class="btn btn-outline-danger bi bi-trash-fill"
+          (click)="deleteSlide(slide)"
+        ></button>
+      </td>
+    </tr>
+  </tbody>
+</table>

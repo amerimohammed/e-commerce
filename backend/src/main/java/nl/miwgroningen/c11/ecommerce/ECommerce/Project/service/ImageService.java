@@ -12,4 +12,6 @@ public interface ImageService {
     Boolean Delete(Long imageId);
 
     List<Image> saveList(List<Image> images);
+
+    Image save(MultipartFile imageFile, Long productId) throws IOException;
 }
