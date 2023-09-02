@@ -49,6 +49,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { SlideManageComponent } from './page/manage/slide-manage/slide-manage.component';
 import { SlideList } from './page/manage/slide-manage/components/product-list/slide-list';
 import { CartComponent } from './layout/header/components/cart/cart.component';
+import { CheckoutComponent } from './page/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { CartComponent } from './layout/header/components/cart/cart.component';
     SlideDeleteConfirmComponent,
     SlideEditFormComponent,
     SlideManageComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
@@ -103,7 +105,7 @@ import { CartComponent } from './layout/header/components/cart/cart.component';
     MatFormFieldModule,
     MatSelectModule,
     SlideList,
-    CartComponent,
+    CheckoutComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

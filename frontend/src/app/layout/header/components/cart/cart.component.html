@@ -8,7 +8,69 @@
   ></button>
 </div>
 <div class="offcanvas-body">
-  <div class="text-end">
-    <button type="button" class="btn btn-outline-dark">Check Out</button>
+  <div class="pb-3 pe-3 ps-3">
+    <div class="d-flex justify-content-between align-items-center">
+      <span class="me-3">{{ cart.items.length }} items</span>
+      <button mat-button color="primary" (click)="closeOffCanvas('close')">
+        continue shopping
+      </button>
+    </div>
+    <hr />
+    <div *ngIf="cart.items.length" class="py-2">
+      <div
+        *ngFor="let item of cart.items"
+        class="d-flex justify-content-between align-items-center mb-2 fw-light"
+      >
+        <img
+          src="{{
+            item.product.productImages.length > 0
+              ? apiUrl + item.product.productImages[0].imageUrl
+              : apiUrl + '/images/product.png'
+          }}"
+          class="img-thumbnail me-2 product-img-thumbnail"
+          style="flex: 1"
+        />
+        <div
+          style="
+            height: 40px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            flex: 2;
+          "
+        >
+          {{ item.product.title }}
+        </div>
+        <div class="d-flex align-items-center" style="flex: 2">
+          <button mat-icon-button color="warn" (click)="removeOne(item)">
+            <mat-icon>remove_circle_outline</mat-icon>
+          </button>
+          <span>{{ item.quantity }}</span>
+          <button mat-icon-button color="primary" (click)="addOne(item)">
+            <mat-icon>add_circle_outline</mat-icon>
+          </button>
+        </div>
+        <span class="fw-bold" style="flex: 1">{{
+          item.product.price | currency
+        }}</span>
+      </div>
+    </div>
+    <hr />
+    <div class="d-flex justify-content-between fw-light">
+      Total:
+      <span class="fw-bold">{{ getTotal() | currency : "EUR" }}</span>
+    </div>
+
+    <div class="pt-3 text-end">
+      <button
+        type="button"
+        class="btn btn-outline-success"
+        [disabled]="!cart.items.length"
+        (click)="checkout()"
+      >
+        <i class="bi bi-cart-check fs-5"></i>
+        Check Out
+      </button>
+    </div>
   </div>
 </div>

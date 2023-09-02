@@ -37,7 +37,7 @@ export class CartService {
       this.removeFromCart(item);
     } else {
       const updatedItem = this.cart.value.items.find(
-        (_item) => (_item.product.productId = item.product.productId)
+        (_item) => _item.product.productId === item.product.productId
       );
       if (updatedItem) {
         updatedItem.quantity--;

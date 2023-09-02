@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { Cart } from 'src/app/model/cart';
 import { CartService } from 'src/app/service/cart.service';
+import { CartComponent } from './components/cart/cart.component';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +14,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   cart: Cart = { items: [] };
   cartSubscription: Subscription | undefined;
 
-  constructor(private cartService: CartService) {}
+  constructor(
+    private cartService: CartService,
+    private offcanvasService: NgbOffcanvas
+  ) {}
 
   ngOnInit(): void {
     this.cartSubscription = this.cartService.cart.subscribe(
@@ -20,16 +25,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     );
   }
 
-  getTotal(): number {
-    return this.cartService.getTotal();
-  }
-
   getTotalQuantity(): number {
     return this.cartService.getTotalQuantity();
   }
 
-  onClearCart(): void {
-    this.cartService.clearCart();
+  openCart() {
+    this.offcanvasService.open(CartComponent, { position: 'end' });
   }
 
   ngOnDestroy(): void {

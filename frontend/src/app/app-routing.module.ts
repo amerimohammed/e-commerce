@@ -9,10 +9,12 @@ import { OrderManageComponent } from './page/manage/order-manage/order-manage.co
 import { isAuthenticatedGuard } from './guard/is-authenticated.guard';
 import { hasRoleGuard } from './guard/has-role.guard';
 import { SlideManageComponent } from './page/manage/slide-manage/slide-manage.component';
+import { CheckoutComponent } from './page/checkout/checkout.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'cart', component: HomeComponent },
+  { path: 'checkout', component: CheckoutComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'product/:productId', component: ProductComponent },
 
