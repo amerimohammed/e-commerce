@@ -34,7 +34,7 @@ public class SecurityConfig {
                         .antMatchers(HttpMethod.GET,
                                 "/images/**", "/product/list", "/product/get/**", "/slide/list")
                         .permitAll()
-                        .antMatchers(HttpMethod.POST, "/login", "/register").permitAll()
+                        .antMatchers(HttpMethod.POST, "/login", "/register", "/stripe/payment").permitAll()
                         .anyRequest().authenticated());
         return http.build();
     }

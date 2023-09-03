@@ -22,6 +22,7 @@
     "@angular/router": "^16.0.0",
     "@ng-bootstrap/ng-bootstrap": "^15.1.1",
     "@popperjs/core": "^2.11.6",
+    "@stripe/stripe-js": "^1.54.2",
     "@types/bootstrap": "^5.2.6",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.5",

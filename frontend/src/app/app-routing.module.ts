@@ -10,11 +10,15 @@ import { isAuthenticatedGuard } from './guard/is-authenticated.guard';
 import { hasRoleGuard } from './guard/has-role.guard';
 import { SlideManageComponent } from './page/manage/slide-manage/slide-manage.component';
 import { CheckoutComponent } from './page/checkout/checkout.component';
+import { SuccessPaymentComponent } from './page/success-payment/success-payment.component';
+import { FailPaymentComponent } from './page/fail-payment/fail-payment.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'cart', component: HomeComponent },
   { path: 'checkout', component: CheckoutComponent },
+  { path: 'payment/success', component: SuccessPaymentComponent },
+  { path: 'payment/fail', component: FailPaymentComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'product/:productId', component: ProductComponent },
 

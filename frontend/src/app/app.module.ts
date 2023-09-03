@@ -3,7 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbModule, NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbAlertModule,
+  NgbModule,
+  NgbNavModule,
+} from '@ng-bootstrap/ng-bootstrap';
 import { HeaderComponent } from './layout/header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -50,6 +54,8 @@ import { SlideManageComponent } from './page/manage/slide-manage/slide-manage.co
 import { SlideList } from './page/manage/slide-manage/components/product-list/slide-list';
 import { CartComponent } from './layout/header/components/cart/cart.component';
 import { CheckoutComponent } from './page/checkout/checkout.component';
+import { SuccessPaymentComponent } from './page/success-payment/success-payment.component';
+import { FailPaymentComponent } from './page/fail-payment/fail-payment.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +81,8 @@ import { CheckoutComponent } from './page/checkout/checkout.component';
     SlideEditFormComponent,
     SlideManageComponent,
     CartComponent,
+    SuccessPaymentComponent,
+    FailPaymentComponent,
   ],
   imports: [
     BrowserModule,
@@ -106,6 +114,7 @@ import { CheckoutComponent } from './page/checkout/checkout.component';
     MatSelectModule,
     SlideList,
     CheckoutComponent,
+    NgbAlertModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

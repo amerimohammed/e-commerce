@@ -70,4 +70,8 @@ export class CartService {
       0
     );
   }
+
+  getItems(): CartItem[] {
+    return this.cart.value.items;
+  }
 }

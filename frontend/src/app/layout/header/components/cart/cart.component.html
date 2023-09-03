@@ -51,7 +51,7 @@
           </button>
         </div>
         <span class="fw-bold" style="flex: 1">{{
-          item.product.price | currency
+          item.product.price * item.quantity | currency : "EUR"
         }}</span>
       </div>
     </div>
@@ -69,7 +69,7 @@
         (click)="checkout()"
       >
         <i class="bi bi-cart-check fs-5"></i>
-        Check Out
+        Proceed to checkout
       </button>
     </div>
   </div>

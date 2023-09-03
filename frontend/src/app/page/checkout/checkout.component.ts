@@ -10,7 +10,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
+import { loadStripe } from '@stripe/stripe-js';
+import { env } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+import { CartService } from 'src/app/service/cart.service';
 
+const apiUrl = env.apiUrl + '/stripe';
 /**
  * @title Stepper that displays errors in the steps
  */
@@ -35,6 +40,8 @@ import { MatStepperModule } from '@angular/material/stepper';
   ],
 })
 export class CheckoutComponent {
+  stripePromise = loadStripe(env.stripePublicKey);
+
   firstFormGroup = this._formBuilder.group({
     firstCtrl: ['', Validators.required],
   });
@@ -42,5 +49,28 @@ export class CheckoutComponent {
     secondCtrl: ['', Validators.required],
   });
 
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(
+    private _formBuilder: FormBuilder,
+    private http: HttpClient,
+    private cartService: CartService
+  ) {}
+
+  async pay(): Promise<void> {
+    const checkoutItems = this.cartService.getItems().map((item) => ({
+      productId: item.product.productId,
+      quantity: item.quantity,
+    }));
+
+    const stripe = await this.stripePromise;
+
+    this.http
+      .post(`${apiUrl}/payment`, checkoutItems)
+      .subscribe((data: any) => {
+        if (stripe) {
+          stripe.redirectToCheckout({
+            sessionId: data.id,
+          });
+        }
+      });
+  }
 }
